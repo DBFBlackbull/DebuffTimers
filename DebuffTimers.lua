@@ -790,6 +790,18 @@ function AUF:UpdateDatabase()
 				end
 			end
 		end
+
+		if class == "GENERAL" then
+			for effect, info in pairs(effects) do
+				for name, tab in pairs(info) do
+					DEFAULT_CHAT_FRAME:AddMessage("effect "..effect);
+					DEFAULT_CHAT_FRAME:AddMessage("name "..name);
+					if effect == "EFFECT" and AUF_settings.effects[class].effect[name] then
+						AUFdebuff.EFFECT[name] = AUF_Debuff[class].EFFECT[name]
+					end
+				end
+			end
+		end
 	end
 end
 
