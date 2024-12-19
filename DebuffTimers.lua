@@ -332,9 +332,14 @@ function StartTimer(effect, unit, start)
 	timer.END = timer.START
 
 	local duration = 0
-	if AUFdebuff.EFFECT[effect] and AUFdebuff.EFFECT[effect].DURATION then duration = AUFdebuff.EFFECT[effect].DURATION end
+	if AUFdebuff.EFFECT[effect] and AUFdebuff.EFFECT[effect].DURATION then
+		duration = AUFdebuff.EFFECT[effect].DURATION
+	end
+
 	local comboTime = 0
-	if AUFdebuff.SPELL[effect] and AUFdebuff.SPELL[effect].COMBO then comboTime = AUFdebuff.SPELL[effect].COMBO[COMBO] end
+	if AUFdebuff.SPELL[effect] and AUFdebuff.SPELL[effect].COMBO then
+		comboTime = AUFdebuff.SPELL[effect].COMBO[COMBO]
+	end
 	
 	if AUFdebuff.SPELL[effect] and AUFdebuff.SPELL[effect].COMBO and COMBO > 0 then
 		duration = duration + comboTime
@@ -697,7 +702,7 @@ function AUF:UpdateDebuffs()
 							AUF.DoubleCheck[timer.EFFECT] = true
 						end
 						-- xper exception
-						if  getglobal("XPerl_Target_BuffFrame") then
+						if getglobal("XPerl_Target_BuffFrame") then
 							AUF.Debuff[i].parent:SetWidth(getglobal(AUF.DebuffAnchor..i):GetWidth()*0.7)
 							AUF.Debuff[i].parent:SetHeight(getglobal(AUF.DebuffAnchor..i):GetHeight()*0.7)
 							AUF.Debuff[i]:SetScale(getglobal(AUF.DebuffAnchor..i):GetHeight()/36*0.7)
@@ -719,7 +724,7 @@ function AUF:UpdateDebuffs()
 					
 					if AUF.UnitBuff("target",i) == "Interface\\Icons\\"..AUFdebuff.EFFECT[timer.EFFECT].ICON and getglobal(AUF.BuffAnchor..i) then
 						
-						if  getglobal("XPerl_Target_BuffFrame") then
+						if getglobal("XPerl_Target_BuffFrame") then
 							AUF.Buff[i].parent:SetWidth(getglobal(AUF.BuffAnchor..i):GetWidth()*0.7)
 							AUF.Buff[i].parent:SetHeight(getglobal(AUF.BuffAnchor..i):GetHeight()*0.7)
 							AUF.Buff[i]:SetScale(getglobal(AUF.BuffAnchor..i):GetHeight()/36*0.7)
@@ -1139,12 +1144,12 @@ function AUF:DatabasePreload()
 		
 		local _, _, _, _, rank = GetTalentInfo(2, 10) -- improved chilled
 		if rank == 3 then
-			AUF_Debuff["MAGE"].EFFECT["Chilled"].DURATION = 8			
+			AUF_Debuff["MAGE"].EFFECT["Chilled"].DURATION = 8
 		end
 		
 		local _, _, _, _, rank = GetTalentInfo(1, 11) -- improved counterspell
 		if rank == 2 then
-			AUF_Debuff["MAGE"].EFFECT["Counterspell - Silenced"].DURATION = 4		
+			AUF_Debuff["MAGE"].EFFECT["Counterspell - Silenced"].DURATION = 4
 		end
 		
 		local _, _, _, _, rank = GetTalentInfo(3, 16) -- winters chill
