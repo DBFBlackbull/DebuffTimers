@@ -1107,20 +1107,40 @@ AUF_Debuff = {
 	["GENERAL"] = {
 		
 		EFFECT = {
-		
+
+			["Armor Shatter"] = { -- Annihilator
+				ICON = "INC_Axe_12",
+				DURATION = 45,
+			},
+
+			["Net-o-Matic"] = { -- Gnomish Net-o-Matic Projector
+				ICON = "Ability_Ensnare",
+				DURATION = 10,
+			},
+			
+			["Reckless Charge"] = { -- Goblin Rocket Helmet
+				ICON = "Spell_Nature_AstralRecal",
+				DURATION = 30,
+			},
+
 			["Sleep"] = { -- Green Whelp Armour
 				ICON = "Spell_Holy_MindVision",
 				DURATION = 30,
 			},
-			
-			["Net-o-Matic"] = { -- Net O Matic
-				ICON = "INV_Misc_Net_01",
-				DURATION = 10,
+
+			["Spell Vulnerability"] = { -- Nightfall
+				ICON = "Spell_Holy_ElunesGrace",
+				DURATION = 5,
 			},
-			
-			["Reckless Charge"] = { -- Rocket Helm
-				ICON = "INV_Helmet_49",
-				DURATION = 30,
+
+			["Tidal Charm"] = {
+				ICON = "Spell_Frost_SummonWaterElemental",
+				DURATION = 3,
+			},
+
+			["Thorium Grenade"] = {
+				ICON = "Spell_Fire_SelfDestruct",
+				DURATION = 3,
 			},
 		},
 	},
