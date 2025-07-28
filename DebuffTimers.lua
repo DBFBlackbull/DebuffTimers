@@ -102,10 +102,11 @@ end
 
 function SetActionRank(name, rank)
 	local _, _, rank = strfind(rank or '', 'Rank (%d+)')
-	if rank and AUFdebuff.SPELL[name] and AUFdebuff.EFFECT[name] then
-		AUFdebuff.EFFECT[AUFdebuff.SPELL[name].EFFECT or name].DURATION = AUFdebuff.SPELL[name].DURATION[tonumber(rank)]
-	elseif rank and AUFdebuff.SPELL[name] and AUFdebuff.SPELL[name].EFFECT then
-		AUFdebuff.EFFECT[AUFdebuff.SPELL[name].EFFECT or name].DURATION = AUFdebuff.SPELL[name].DURATION[tonumber(rank)]
+	if rank and AUFdebuff.SPELL[name] then
+		local effectName = AUFdebuff.SPELL[name].EFFECT or name
+		if AUFdebuff.EFFECT[effectName] then
+			AUFdebuff.EFFECT[effectName].DURATION = AUFdebuff.SPELL[name].DURATION[tonumber(rank)]
+		end
 	end
 end
 
@@ -1143,24 +1144,24 @@ function AUF:DatabasePreload()
 				ICON = "Spell_Fire_SoulBurn",
 				DURATION = 30,
 			}
-			
+
 			AUF_Debuff["MAGE"].SPELL["Scorch"] = {
 				DURATION = {30, 30, 30, 30, 30, 30, 30},
 				EFFECT = "Fire Vulnerability",
 			}
-			
+
 		end
-		
+
 		local _, _, _, _, rank = GetTalentInfo(2, 10) -- improved chilled
 		if rank == 3 then
 			AUF_Debuff["MAGE"].EFFECT["Chilled"].DURATION = 8
 		end
-		
+
 		local _, _, _, _, rank = GetTalentInfo(1, 11) -- improved counterspell
 		if rank == 2 then
 			AUF_Debuff["MAGE"].EFFECT["Counterspell - Silenced"].DURATION = 4
 		end
-		
+
 		local _, _, _, _, rank = GetTalentInfo(3, 16) -- winters chill
 		if rank == 1 or rank == 2 or rank == 3 or rank == 4 or rank == 5 then
 			AUF_Debuff["MAGE"].EFFECT["Winter's Chill"] = {
@@ -1168,5 +1169,9 @@ function AUF:DatabasePreload()
 				DURATION = 15,
 			}
 		end
+	end
+
+	if  CLASS == "PALADIN" then
+		local _, _, _, _, rank = GetTalentInfo(1, 12) -- Lasting  Judgement
 	end
 end
