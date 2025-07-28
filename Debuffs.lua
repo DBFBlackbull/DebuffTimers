@@ -487,6 +487,26 @@ AUF_Debuff = {
 				ICON = "Spell_Holy_TurnUndead",
 				DURATION = 10,
 			},
+
+			["Judgement of the Crusader"] = {
+				ICON = "Spell_Holy_HolySmite",
+				DURATION = 30
+			},
+
+			["Judgement of Light"] = {
+				ICON = "Spell_Holy_HealingAura",
+				DURATION = 30
+			},
+
+			["Judgement of Wisdom"] = {
+				ICON = "Spell_Holy_RighteousnessAura",
+				DURATION = 30
+			},
+
+			["Judgement of Justice"] = {
+				ICON = "Spell_Holy_SealOfWrath",
+				DURATION = 30
+			}
 		},
 		
 		SPELL = {
