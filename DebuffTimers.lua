@@ -14,7 +14,7 @@ do
 	end)
 	for _, event in {
 		'CHAT_MSG_COMBAT_HONOR_GAIN', 'CHAT_MSG_COMBAT_HOSTILE_DEATH', 'PLAYER_REGEN_ENABLED',
-		'CHAT_MSG_SPELL_AURA_GONE_OTHER', 'CHAT_MSG_SPELL_BREAK_AURA',
+		'CHAT_MSG_SPELL_AURA_GONE_OTHER', 'CHAT_MSG_SPELL_BREAK_AURA','CHAT_MSG_COMBAT_SELF_HITS',
 		'CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE', 'CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS', 'CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE',
 		'SPELLCAST_STOP', 'SPELLCAST_INTERRUPTED', 'CHAT_MSG_SPELL_SELF_DAMAGE', 'CHAT_MSG_SPELL_FAILED_LOCALPLAYER',
 		'PLAYER_TARGET_CHANGED', 'UPDATE_BATTLEFIELD_SCORE',
@@ -254,6 +254,10 @@ function CHAT_MSG_SPELL_BREAK_AURA()
 	for unit, effect in string.gfind(arg1, "(.+)'s (.+) is removed%.") do
 		AuraGone(unit, effect)
 	end
+end
+
+function CHAT_MSG_COMBAT_SELF_HITS()
+
 end
 
 function ActivateDRTimer(effect, unit)
@@ -1157,13 +1161,8 @@ function AUF:DatabasePreload()
 			AUF_Debuff["MAGE"].EFFECT["Chilled"].DURATION = 8
 		end
 
-		local _, _, _, _, rank = GetTalentInfo(1, 11) -- improved counterspell
-		if rank == 2 then
-			AUF_Debuff["MAGE"].EFFECT["Counterspell - Silenced"].DURATION = 4
-		end
-
 		local _, _, _, _, rank = GetTalentInfo(3, 16) -- winters chill
-		if rank == 1 or rank == 2 or rank == 3 or rank == 4 or rank == 5 then
+		if rank > 0 then
 			AUF_Debuff["MAGE"].EFFECT["Winter's Chill"] = {
 				ICON = "Spell_Frost_ChillingBlast",
 				DURATION = 15,
@@ -1173,5 +1172,10 @@ function AUF:DatabasePreload()
 
 	if  CLASS == "PALADIN" then
 		local _, _, _, _, rank = GetTalentInfo(1, 12) -- Lasting  Judgement
+		local duration = (rank+1) * 10
+		AUF_Debuff["PALADIN"].EFFECT["Judgement of the Crusader"].DURATION =  duration
+		AUF_Debuff["PALADIN"].EFFECT["Judgement of Light"].DURATION = duration
+		AUF_Debuff["PALADIN"].EFFECT["Judgement of Wisdom"].DURATION = duration
+		AUF_Debuff["PALADIN"].EFFECT["Judgement of Justice"].DURATION = duration
 	end
 end

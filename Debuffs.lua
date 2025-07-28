@@ -358,7 +358,7 @@ AUF_Debuff = {
 			
 			["Counterspell - Silenced"] = {
 				ICON = "Spell_Frost_IceShock",
-				DURATION = 10,
+				DURATION = 4,
 			},
 			
 			["Fireball"] = {
@@ -490,22 +490,22 @@ AUF_Debuff = {
 
 			["Judgement of the Crusader"] = {
 				ICON = "Spell_Holy_HolySmite",
-				DURATION = 30
+				DURATION = 10
 			},
 
 			["Judgement of Light"] = {
 				ICON = "Spell_Holy_HealingAura",
-				DURATION = 30
+				DURATION = 10
 			},
 
 			["Judgement of Wisdom"] = {
 				ICON = "Spell_Holy_RighteousnessAura",
-				DURATION = 30
+				DURATION = 10
 			},
 
 			["Judgement of Justice"] = {
 				ICON = "Spell_Holy_SealOfWrath",
-				DURATION = 30
+				DURATION = 10
 			}
 		},
 		
